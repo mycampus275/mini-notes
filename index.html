@@ -1,1 +1,108 @@
 
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mini Notes</title>
+    <meta name="description" content="A tiny notes app for learning (Vercel + Supabase)." />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <h1>Mini Notes</h1>
+      <p class="tagline">Learning project · HTML + CSS + JS · Vercel + Supabase</p>
+    </header>
+
+    <main id="app" class="container">
+      <!-- status messages from JS go here -->
+      <p id="message" role="status" aria-live="polite" class="message"></p>
+
+      <!-- create note -->
+      <section aria-labelledby="create-note-title" class="card">
+        <h2 id="create-note-title">Create a note</h2>
+
+        <form id="createForm" novalidate>
+          <div class="field">
+            <label for="title">Title <span class="hint">(max 120)</span></label>
+            <input
+              id="title"
+              name="title"
+              type="text"
+              inputmode="text"
+              autocomplete="off"
+              maxlength="120"
+              required
+              placeholder="Eg: Grocery ideas"
+            />
+          </div>
+
+          <div class="field">
+            <label for="body">Body <span class="hint">(max 5000)</span></label>
+            <textarea
+              id="body"
+              name="body"
+              rows="6"
+              maxlength="5000"
+              required
+              placeholder="Write your note here…"
+            ></textarea>
+          </div>
+
+          <div class="actions">
+            <button id="addNoteBtn" type="submit">Add note</button>
+            <button id="clearFormBtn" type="reset">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- list / manage notes -->
+      <section aria-labelledby="your-notes-title" class="card">
+        <div class="list-header">
+          <h2 id="your-notes-title">Your notes</h2>
+
+          <!-- simple search/filter hooks (optional, wired later) -->
+          <div class="filters">
+            <label for="search" class="visually-hidden">Search notes</label>
+            <input id="search" type="search" placeholder="Search title…" />
+          </div>
+        </div>
+
+        <!-- results container; JS will render items here -->
+        <div id="emptyState" class="empty" hidden>
+          <p>No notes yet. Create your first note above.</p>
+        </div>
+
+        <ul id="notesList" class="notes" aria-live="polite" aria-busy="false">
+          <!-- Template of one item for reference (rendered by JS later)
+          <li class="note" data-id="">
+            <div class="note-head">
+              <h3 class="note-title">Title</h3>
+              <time class="note-time" datetime="">just now</time>
+            </div>
+            <p class="note-body">Body text…</p>
+            <div class="note-actions">
+              <button class="edit-btn" data-id="">Edit</button>
+              <button class="delete-btn" data-id="">Delete</button>
+            </div>
+          </li>
+          -->
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <small>
+        Device-scoped demo. No personal accounts yet.
+      </small>
+    </footer>
+
+    <noscript>
+      <p style="padding:1rem">This app needs JavaScript enabled.</p>
+    </noscript>
+
+    <!-- your JS (will wire form + list later) -->
+    <script src="/script.js" type="module"></script>
+  </body>
+</html>
